@@ -1,0 +1,44 @@
+name: Conan
+
+on: [push]
+
+jobs:
+  conan:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        include:
+          - os: ubuntu-18.04
+            python-arch: "x64"
+            python-version: "3.6.x"
+            gcc-version: "7"
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        version: ${{ matrix.python-version }}
+        architecture: ${{ matrix.python-arch }}
+    - name: Install conan && conan package tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install conan
+        pip install conan_package_tools
+    - uses: actions/checkout@v1
+    - name: Generating conan user directory and building the solution
+      run: |
+        conan user
+        python conan/build.py
+      env:
+        CONAN_REFERENCE: "Action/1.0"
+        CONAN_USERNAME: "canmor"
+        CONAN_LOGIN_USERNAME: "canmor"
+        CONAN_CHANNEL: "testing"
+        CONAN_UPLOAD: "https://api.bintray.com/conan/conan/Action"
+        CONAN_STABLE_BRANCH_PATTERN: "release/*"
+        CONAN_GCC_VERSIONS: ${{ matrix.gcc-version }}
+        #CONAN_APPLE_CLANG_VERSIONS: "11.0"
+        #CONAN_VISUAL_VERSIONS: ${{ matrix.vs-version }}
