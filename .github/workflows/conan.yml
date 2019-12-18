@@ -9,7 +9,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         include:
-          - os: ubuntu-18.04
+          - os: ubuntu-latest
             python-arch: "x64"
             python-version: "3.6.x"
             gcc-version: "7"
