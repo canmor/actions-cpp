@@ -31,7 +31,7 @@ jobs:
     - name: Generating conan user directory and building the solution
       run: |
         conan user
-        python conan/build.py
+        cd && python conan/build.py
       env:
         CONAN_REFERENCE: "Action/1.0"
         CONAN_USERNAME: "canmor"
