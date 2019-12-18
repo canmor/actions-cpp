@@ -1,13 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 # TODO: named this project here
-project(money)
+project(action)
 
 set(CMAKE_CXX_STANDARD 17)
-
-#set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})
-
-#include(${CMAKE_SOURCE_DIR}/conanbuildinfo.cmake)
-#conan_basic_setup()
 
 find_package(GTest REQUIRED)
 
@@ -15,7 +10,8 @@ aux_source_directory(src ALL_SOURCES)
 
 set(SOURCES ${ALL_SOURCES})
 list(FILTER SOURCES EXCLUDE REGEX "^.*Test.cpp$")
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_library(${PROJECT_NAME} ${SOURCES})
+target_include_directories(${PROJECT_NAME} PUBLIC include)
 
 set(TEST_SOURCES ${ALL_SOURCES})
 list(FILTER TEST_SOURCES INCLUDE REGEX "^.*Test.cpp$")
