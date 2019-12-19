@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 project(action)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CXXFLAGS "${CONAN_CXX_FLAGS} ${CXXFLAGS}")
 
 find_package(GTest REQUIRED)
 
