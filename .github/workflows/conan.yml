@@ -33,11 +33,11 @@ jobs:
         conan user
         cd conan && python build.py
       env:
-        CONAN_REFERENCE: "Action/1.0"
+        CONAN_REFERENCE: "actions/1.0"
         CONAN_USERNAME: "canmor"
         CONAN_LOGIN_USERNAME: "canmor"
         CONAN_CHANNEL: "testing"
-        CONAN_UPLOAD: "https://api.bintray.com/conan/conan/Action"
+        CONAN_UPLOAD: "https://api.bintray.com/conan/conan/actions"
         CONAN_STABLE_BRANCH_PATTERN: "release/*"
         CONAN_GCC_VERSIONS: ${{ matrix.gcc-version }}
         #CONAN_APPLE_CLANG_VERSIONS: "11.0"
