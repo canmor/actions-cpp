@@ -20,7 +20,6 @@ jobs:
         conan install . -s compiler.libcxx=libstdc++11
     - name: cmake
       run: |
-        find /home/runner/.conan -name '*.so*'
         cmake . -DCMAKE_TOOLCHAIN_FILE=conan_paths.cmake
         cmake --build .
         ctest --output-on-failure
