@@ -13,6 +13,7 @@ jobs:
             python-arch: "x64"
             python-version: "3.6.x"
             gcc-version: "7"
+            install-headerfiles: true
 
     runs-on: ${{ matrix.os }}
 
@@ -27,6 +28,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install conan
         pip install conan_package_tools
+    - name: Install C and C++ header files
+      run: |
+        sudo apt-get update && sudo apt-get install -y gcc-multilib
+      if: matrix.install-headerfiles
     - uses: actions/checkout@v1
     - name: Generating conan user directory and building the solution
       run: |
