@@ -1,6 +1,9 @@
-name: Conan
+name: Conan[stable]
 
-on: [push]
+on:
+  release:
+    types:
+      - created
 
 jobs:
   conan:
@@ -41,7 +44,7 @@ jobs:
         CONAN_REFERENCE: "actions/0.1"
         CONAN_USERNAME: "canmor"
         CONAN_LOGIN_USERNAME: "canmor"
-        CONAN_CHANNEL: "testing"
+        CONAN_CHANNEL: "stable"
         CONAN_UPLOAD: "https://api.bintray.com/conan/conan/actions"
         CONAN_STABLE_BRANCH_PATTERN: "release/*"
         CONAN_GCC_VERSIONS: ${{ matrix.gcc-version }}
