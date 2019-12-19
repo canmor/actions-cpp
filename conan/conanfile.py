@@ -19,7 +19,7 @@ class ActionsConan(ConanFile):
 
     def build(self):
         if self.settings.compiler == "gcc":
-            self.run("conan install actions-cpp -s compiler.libcxx=libstdc++11")
+            self.run("conan install actions-cpp -s compiler.libcxx=libstdc++11 arch=%s" %self.settings.arch)
         elif self.settings.compiler == "apple-clang":
             self.run("conan install actions-cpp")
         cmake = CMake(self)
