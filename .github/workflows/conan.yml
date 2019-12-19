@@ -33,7 +33,7 @@ jobs:
         conan user
         cd conan && python build.py
       env:
-        CONAN_REFERENCE: "actions/1.0"
+        CONAN_REFERENCE: "actions/0.1"
         CONAN_USERNAME: "canmor"
         CONAN_LOGIN_USERNAME: "canmor"
         CONAN_CHANNEL: "testing"
