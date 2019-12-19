@@ -44,6 +44,7 @@ jobs:
         CONAN_CHANNEL: "testing"
         CONAN_UPLOAD: "https://api.bintray.com/conan/conan/actions"
         CONAN_STABLE_BRANCH_PATTERN: "release/*"
+        CONAN_ARCHS: "x86_64"
         CONAN_GCC_VERSIONS: ${{ matrix.gcc-version }}
         #CONAN_APPLE_CLANG_VERSIONS: "11.0"
         #CONAN_VISUAL_VERSIONS: ${{ matrix.vs-version }}
