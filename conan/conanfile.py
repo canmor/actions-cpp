@@ -24,7 +24,7 @@ class ActionsConan(ConanFile):
             self.run("conan install actions-cpp")
         cmake = CMake(self)
         cmake.configure(defs={"CMAKE_TOOLCHAIN_FILE": "conan_paths.cmake"}, source_folder="actions-cpp")
-        cmake.build()
+        cmake.build(target="action")
 
     def package(self):
         self.copy("*.h", dst="include", src="actions-cpp/include")
