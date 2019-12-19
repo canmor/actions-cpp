@@ -18,12 +18,16 @@ class ActionsConan(ConanFile):
         self.run("git clone https://github.com/canmor/actions-cpp.git")
 
     def build(self):
+        if self.settings.compiler == "gcc":
+            self.run("conan install actions-cpp -s compiler.libcxx=libstdc++11")
+        elif self.settings.compiler == "apple-clang":
+            self.run("conan install actions-cpp")
         cmake = CMake(self)
-        cmake.configure(source_folder="actions-cpp")
+        cmake.configure(defs={"CMAKE_TOOLCHAIN_FILE": "conan_paths.cmake"}, source_folder="actions-cpp")
         cmake.build()
 
     def package(self):
-        self.copy("*.h", dst="include", src="actions-cpp")
+        self.copy("*.h", dst="include", src="actions-cpp/include")
         self.copy("*action.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
