@@ -23,3 +23,12 @@ jobs:
         cmake . -DCMAKE_TOOLCHAIN_FILE=conan_paths.cmake
         cmake --build .
         ctest --output-on-failure
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with: 
+        # Artifact name
+        name: action
+        # Directory containing files to upload
+        path: ./src
+         
